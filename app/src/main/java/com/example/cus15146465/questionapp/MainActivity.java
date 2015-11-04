@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Start variable declarations
+    // Start variable declarations
 
     public Button btnFalse;
     public Button btnTrue;
