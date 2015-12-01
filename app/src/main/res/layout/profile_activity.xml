@@ -1,105 +1,138 @@
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="#dedede"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.mhissdev.com.QuestionApp.ProfileActivity">
 
+    <!-- <RelativeLayout
+        android:id="@+id/top-background"
+        android:background="@drawable/background"
+        android:layout_width="match_parent"
+        android:layout_height="120dp" /> -->
 
-    <FrameLayout
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/topFrame"
-        android:layout_alignParentEnd="true"
-        >
+    <!-- Top banner -->
+    <ImageView
+        android:id="@+id/top_banner"
+        android:src="@drawable/background"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:adjustViewBounds="true" />
 
+    <!-- Main content -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:layout_marginTop="88dp">
+
+        <!-- Emojis -->
         <ImageView
-            android:layout_width="385dp"
-            android:layout_height="113dp"
-            android:id="@+id/banner"
-            android:src="@drawable/banner"
-            />
+            android:id="@+id/emojis"
+            android:src="@drawable/emojis"
+            android:layout_width="64dp"
+            android:layout_height="64dp" />
+        
+        <!-- Title -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="right"
+            android:text="Mark Hiscock"
+            android:textSize="32sp"
+            android:textStyle="normal"/>
 
+        <!-- Email -->
         <ImageView
-            android:layout_width="330dp"
-            android:layout_height="100dp"
-            android:id="@+id/manIcon"
-            android:src="@drawable/man"
-            android:layout_marginTop="50dp"
-            />
+            android:id="@+id/icon_email"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/title"
+            android:src="@drawable/img_05"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/text_email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Frank Cobby"
-            android:id="@+id/textView"
-            android:layout_gravity="right|center_vertical"
-            android:layout_below="@+id/topFrame"
-            android:layout_alignEnd="@+id/topFrame"
-            android:layout_marginEnd="57dp" />
+            android:layout_alignTop="@id/icon_email"
+            android:layout_alignBottom="@id/icon_email"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/icon_email"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:text="mark@somecompany.com"/>
 
-    </FrameLayout>
+        <!-- site -->
+        <ImageView
+            android:id="@+id/icon_site"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/icon_email"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/img_03"/>
 
-    <ImageView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/birthday"
-        android:id="@+id/birthdayIcon"
-        android:layout_below="@+id/topFrame"
-        android:layout_alignStart="@+id/websiteIcon"
-        android:layout_marginTop="41dp" />
+        <TextView
+            android:id="@+id/text_site"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/icon_site"
+            android:layout_alignBottom="@id/icon_site"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/icon_site"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:text="http://somesite.com"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/websiteIcon"
-        android:src="@drawable/website"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/locationIcon"
-        android:layout_marginTop="52dp" />
+        <!-- Some info -->
+        <ImageView
+            android:id="@+id/icon_info"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/icon_site"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/img_04"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/locationIcon"
-        android:src="@drawable/location"
-        android:layout_marginEnd="41dp"
-        android:layout_below="@+id/websiteIcon"
-        android:layout_toStartOf="@+id/textView4"
-        android:layout_marginTop="50dp" />
+        <TextView
+            android:id="@+id/text_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/icon_info"
+            android:layout_alignBottom="@id/icon_info"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/icon_info"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:text="mhiscock"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="10th of July"
-        android:id="@+id/textView2"
-        android:layout_alignBottom="@+id/birthdayIcon"
-        android:layout_centerHorizontal="true" />
+        <!-- Location -->
+        <ImageView
+            android:id="@+id/icon_location"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/icon_info"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/img_01"/>
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="City of Bath College"
-        android:id="@+id/textView4"
-        android:layout_alignBottom="@+id/locationIcon"
-        android:layout_alignStart="@+id/textView2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="frankcobby.com"
-        android:id="@+id/textView6"
-        android:layout_gravity="left|top"
-        android:layout_alignBottom="@+id/websiteIcon"
-        android:layout_toEndOf="@+id/locationIcon" /><![CDATA[
-    />
+        <TextView
+            android:id="@+id/text_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/icon_location"
+            android:layout_alignBottom="@id/icon_location"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@+id/icon_location"
+            android:layout_marginLeft="20dp"
+            android:textSize="18sp"
+            android:text="Devizes, Wiltshire, UK."/>
 
 
-]]>
+    </RelativeLayout>
+
+
 </RelativeLayout>

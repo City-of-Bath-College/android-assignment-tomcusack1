@@ -1,29 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="questionapp.frank.fca.com.questionapp" >
+    package="com.tomcusack.QuestionApp" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="com.tomcusack.QuestionApp.ParseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.AppCompat">
+
+        <!-- START: Game Screen -->
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:name="com.tomcusack.QuestionApp.MainActivity">
         </activity>
+        <!-- END: Game Screen -->
+
+        <!-- START: About Screen -->
         <activity
-            android:name=".IntroductionActivity"
-            android:label="@string/title_activity_introduction"
-            android:theme="@android:style/Theme.Black.NoTitleBar">
+            android:name="com.tomcusack.QuestionApp.ProfileActivity"
+            android:label="@string/title_activity_profile" >
+        </activity>
+        <!-- END: About Screen -->
+
+        <!--  START: Main Screen  -->
+        <activity
+            android:name="com.tomcusack.QuestionApp.IntroductionActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--  END: Main Screen  -->
+
+        <!--  START: High score Screen  -->
         <activity
-            android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile" >
+            android:name="com.tomcusack.QuestionApp.HighScoreActivity"
+            android:label="High Score Table">
         </activity>
+        <!--  END: High score Screen  -->
+
     </application>
 </manifest>

@@ -4,40 +4,71 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/bg"
-    tools:context="questionapp.frank.fca.com.questionapp.IntroductionActivity">
+    tools:context="com.tomcusack.QuestionApp.IntroductionActivity">
+
+    <ImageView
+        android:id="@+id/imgPicture"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/question"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:id="@+id/welcomeMessage"
+        android:text="MathsPro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:layout_below="@+id/imgPicture"/>
+
+    <TextView
+        android:id="@+id/highScoreMessage"
+        android:text="High Score:0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="4dp"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_below="@+id/welcomeMessage"/>
 
     <Button
-        android:id="@+id/this_is_id_name"
-        android:layout_width="fill_parent"
-        android:layout_height="70dp"
-        android:text="Let's Play!"
-        android:textSize="21dp"
-        android:textColor="#e0e0e0"
-        android:background="#1483FF"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/btnPlay"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/highScoreMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="PLAY"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="#05dd97"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="About"
-        android:id="@+id/About"
-        android:textColor="#e0e0e0"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:layout_above="@+id/HighScore"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="20dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="High Score"
-        android:id="@+id/HighScore"
-        android:textColor="#e0e0e0"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/btnHigh"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btnPlay"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="HIGH SCORES"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:background="#05dd97"/>
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/btnHigh"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:text="ABOUT"
+        android:textSize="22sp"
+        android:padding="10dp"
+        android:background="#05dd97"/>
 
 </RelativeLayout>
