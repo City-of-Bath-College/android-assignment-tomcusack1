@@ -15,39 +15,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 import com.tomcusack.QuestionApp.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.squareup.picasso.Picasso;
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-<<<<<<< HEAD
 import io.paperdb.Paper;
 
 public class MainActivity extends AppCompatActivity {
 
-=======
-
-import io.paperdb.Paper;
-
-
-public class MainActivity extends AppCompatActivity {
-
-    /* Variables */
->>>>>>> origin/master
     private Button btnFalse;
     private Button btnTrue;
     private TextView lblQuestion;
@@ -64,10 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String IMAGE_ROOT_URL = "http://kvsk.org/dev/quiz/images/";
     private MediaPlayer correctSound;
     private MediaPlayer wrongSound;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,24 +90,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
         correctSound = MediaPlayer.create(MainActivity.this, R.raw.ping );
         wrongSound = MediaPlayer.create(MainActivity.this, R.raw.boo);
         Paper.init(this);
         loadQuestions();
-=======
-        /* Init sounds */
-        correctSound = MediaPlayer.create(MainActivity.this, R.raw.ping );
-        wrongSound = MediaPlayer.create(MainActivity.this, R.raw.boo);
-
-        /* Init Paper*/
-        Paper.init(this);
-
-        Log.d("TCUSACKLOG", "Main Activity Create");
-
-        // Load Questions
-        loadQuestionsFromParseAPI();
->>>>>>> origin/master
     }
 
     @Override
@@ -153,7 +118,6 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-<<<<<<< HEAD
     private void loadQuestions()
     {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("ParseQuestionObject");
@@ -196,42 +160,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // Let's get the questions and answers ready to display
-=======
-    /* Attempt to load question from Parse.com DB */
-    private void loadQuestionsFromParseAPI(){
-
-        // Query Parse.com DB to retrieve list of questions
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("ParseQuestionObject");
-        query.findInBackground(new FindCallback<ParseObject>(){
-
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-
-                    Log.d("TCUSACKLOG", "DATA LOADED OK!");
-                    int len = objects.size();
-
-                    // Add each object to questions
-                    for(int i=0; i<len; i++)
-                    {
-                       ParseObject temp = objects.get(i);
-
-                        /* Add qestion to array */
-                        questions.add(new QuestionObject(
-                                temp.getString("Question"),
-                                temp.getBoolean("Answer"),
-                                temp.getString("ImageURL")
-                        ));
-                    }
-
-                } else {
-                    /* Oh dear, something went wrong */
-                    Log.d("MHISSDEV", "ERROR NO DATA LOADED");
-
-                    /* Load fallback questions */
-                    loadFallbackQuestions();
-                }
-
->>>>>>> origin/master
                 setupQuestions();
             }
 
@@ -338,7 +266,6 @@ public class MainActivity extends AppCompatActivity {
         nextQuestion();
     }
 
-<<<<<<< HEAD
     private void nextQuestion()
     {
         if (currentQuestion < numQuestions)
@@ -348,45 +275,23 @@ public class MainActivity extends AppCompatActivity {
 
             String imageURL = IMAGE_ROOT_URL + questions.get(currentQuestion).getImageURL();
 
-=======
-    // Initiate next question
-    private void nextQuestion(){
-
-        if(currentQuestion <  numQuestions) {
-            // Set question text
-            lblQuestion.setText(questions.get(currentQuestion).getQuestion());
-
-            // Set Question number
-            lblQuestionNumber.setText("Question " + (currentQuestion + 1));
-
-            // Set Image
-            String imageURL = IMAGE_ROOT_URL + questions.get(currentQuestion).getImageURL();
-
-            // Load Image
->>>>>>> origin/master
             Picasso.with(this)
                     .load(imageURL)
                     .placeholder(R.drawable.question)
                     .error(R.drawable.question)
                     .into(imgPicture);
 
-<<<<<<< HEAD
         }
         else
 
         // We've run out of questions, and so that means the game has finished.
         // Let's calculate the score.
         {
-=======
-        } else{
-            // Quiz has finished
->>>>>>> origin/master
             endGame();
         }
 
     }
 
-<<<<<<< HEAD
     private void checkAnswer(boolean answer)
     {
         if (answer == questions.get(currentQuestion).getAnswer())
@@ -426,68 +331,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 playerName = input.getText().toString();
-=======
-    /* Check answer and adjust score accordingly */
-    private void checkAnswer(boolean answer){
-
-        // Check Answer
-        if(answer == questions.get(currentQuestion).getAnswer()){
-            // Answer is correct
-            Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
-
-            // Play Sound
-            correctSound.start();
-
-            // Update score
-            score++;
-            lblScore.setText("Score:" + Integer.toString(score));
-        }
-        else{
-            // Answer is wrong
-            Toast.makeText(MainActivity.this, "Wrong!!", Toast.LENGTH_SHORT).show();
-            wrongSound.start();
-
-        }
-
-        // Do next question
-        currentQuestion++;
-        nextQuestion();
-
-    }
-
-    /* Quiz has finished */
-    private void endGame(){
-
-        // Build dialogue
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Congratulations!");
-        builder.setMessage("You scored " + score + " points! Please enter your name:");
-
-        // See http://stackoverflow.com/questions/10903754/input-text-dialog-android
-        // Set up the input
-        final EditText input = new EditText(this);
-
-        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
-        builder.setView(input);
-
-        // Set up the buttons
-        // Ok button
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                playerName = input.getText().toString();
-
-                // Create new highscore
-                // Is this line screwing up the saving????????
-                //HighScoreObject highScore = new HighScoreObject(score,  playerName, new Date().getTime());
->>>>>>> origin/master
                 HighScoreObject highScore = new HighScoreObject();
                 highScore.score = score;
                 highScore.name = playerName;
                 highScore.timestamp = new Date().getTime();
 
-<<<<<<< HEAD
                 List<HighScoreObject> highScores = Paper.book().read("highscores", new ArrayList<HighScoreObject>());
                 highScores.add(highScore);
 
@@ -513,41 +361,11 @@ public class MainActivity extends AppCompatActivity {
                         }
                         else
                         {
-=======
-                // Load highscores using paper
-                List<HighScoreObject> highScores = Paper.book().read("highscores", new ArrayList<HighScoreObject>());
-
-                // Add item
-                highScores.add(highScore);
-
-                // Sort highscores by score / timestamp
-                /* http://stackoverflow.com/questions/2784514/sort-arraylist-of-custom-objects-by-property*/
-                Collections.sort(highScores, new Comparator<HighScoreObject>() {
-                    @Override
-                    public int compare(HighScoreObject lhs, HighScoreObject rhs) {
-                        // First compare scores
-                        if(lhs.score > rhs.score){
-                            return 1;
-                        }
-                        else if(lhs.score < rhs.score){
-                            return -1;
-                        }
-                        // Scores must be equal if we get here, lets compare timestamp
-                        else if(lhs.timestamp > rhs.timestamp){
-                            return 1;
-                        }
-                        else if(lhs.timestamp < rhs.timestamp){
-                            return -1;
-                        }
-                        else{
-                            // Scores and timestamp eaqual
->>>>>>> origin/master
                             return 0;
                         }
                     }
                 });
 
-<<<<<<< HEAD
                     Collections.reverse(highScores);
                     Paper.book().write("highscores", highScores);
                     Log.d("MHISSDEBUG", "Saving high scores!");
@@ -556,20 +374,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-=======
-                // Reverse highscores
-                Collections.reverse(highScores);
-
-                // Write using paper
-                Paper.book().write("highscores", highScores);
-                Log.d("MHISSDEBUG", "Saving high scores!");
-
-                finish();
-            }
-        });
-
-        // Cancel button
->>>>>>> origin/master
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -582,8 +386,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 }

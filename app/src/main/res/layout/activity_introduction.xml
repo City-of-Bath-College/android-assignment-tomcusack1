@@ -4,11 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-<<<<<<< HEAD
     tools:context="com.tomcusack.QuestionApp.IntroductionActivity">
-=======
-    tools:context="com.example.mhissdev.com.QuestionApp.IntroductionActivity">
->>>>>>> origin/master
 
     <ImageView
         android:id="@+id/imgPicture"
@@ -20,19 +16,11 @@
 
     <TextView
         android:id="@+id/welcomeMessage"
-<<<<<<< HEAD
         android:text="MathsPro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:textSize="40sp"
-=======
-        android:text="Welcome to an AWESOME Geography quiz!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textSize="22sp"
->>>>>>> origin/master
         android:gravity="center"
         android:layout_below="@+id/imgPicture"/>
 

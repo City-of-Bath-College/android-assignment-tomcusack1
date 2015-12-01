@@ -4,10 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 
     <application
         android:name="com.tomcusack.QuestionApp.ParseApplication"
@@ -17,22 +13,12 @@
 
         <!-- START: Game Screen -->
         <activity
-<<<<<<< HEAD
             android:name="com.tomcusack.QuestionApp.MainActivity">
-=======
-            android:name="com.tomcusack.QuestionApp.MainActivity"
-            android:label="@string/app_name" >
-        </activity>
-        <activity
-            android:name="com.tomcusack.QuestionApp.ProfileActivity"
-            android:label="@string/title_activity_profile" >
->>>>>>> origin/master
         </activity>
         <!-- END: Game Screen -->
 
         <!-- START: About Screen -->
         <activity
-<<<<<<< HEAD
             android:name="com.tomcusack.QuestionApp.ProfileActivity"
             android:label="@string/title_activity_profile" >
         </activity>
@@ -44,13 +30,8 @@
             android:label="@string/app_name"
             android:theme="@android:style/Theme.NoTitleBar">
 
-=======
-            android:name="com.tomcusack.QuestionApp.IntroductionActivity"
-            android:label="@string/title_activity_introduction" >
->>>>>>> origin/master
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -59,14 +40,9 @@
         <!--  START: High score Screen  -->
         <activity
             android:name="com.tomcusack.QuestionApp.HighScoreActivity"
-<<<<<<< HEAD
             android:label="High Score Table">
-=======
-            android:label="@string/title_activity_high_score" >
->>>>>>> origin/master
         </activity>
         <!--  END: High score Screen  -->
 
     </application>
-
 </manifest>
