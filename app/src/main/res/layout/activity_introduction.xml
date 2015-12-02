@@ -42,10 +42,10 @@
         android:layout_below="@id/highScoreMessage"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="PLAY"
+        android:text="Let's play!"
         android:textSize="20sp"
         android:padding="10dp"
-        android:background="#05dd97"/>
+        android:background="#76EE00"/>
 
     <Button
         android:id="@+id/btnHigh"
@@ -54,10 +54,10 @@
         android:layout_below="@id/btnPlay"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="HIGH SCORES"
+        android:text="See Top Scores!"
         android:textSize="20sp"
         android:padding="10dp"
-        android:background="#05dd97"/>
+        android:background="#f6f6f6"/>
 
     <Button
         android:id="@+id/btnAbout"
@@ -66,9 +66,9 @@
         android:layout_below="@id/btnHigh"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:text="ABOUT"
+        android:text="About Me!"
         android:textSize="22sp"
         android:padding="10dp"
-        android:background="#05dd97"/>
+        android:background="#f6f6f6"/>
 
 </RelativeLayout>

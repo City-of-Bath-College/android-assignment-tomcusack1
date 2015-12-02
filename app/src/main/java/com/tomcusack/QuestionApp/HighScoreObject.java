@@ -1,3 +1,4 @@
+// Copyright 2015 Tom Cusack
 package com.tomcusack.QuestionApp;
 
 public class HighScoreObject {

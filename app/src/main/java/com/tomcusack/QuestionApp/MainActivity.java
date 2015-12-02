@@ -1,3 +1,4 @@
+// Copyright 2015 Tom Cusack
 package com.tomcusack.QuestionApp;
 
 import android.app.AlertDialog;
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
                     // We need to loop through the parse dataset to ensure we have loaded
                     // all the questions to the question array
-                    for(int i=0;i<len;i++)
+                    for (int i=0;i<len;i++)
                     {
 
                         ParseObject temp = objects.get(i);
@@ -151,118 +152,27 @@ public class MainActivity extends AppCompatActivity {
                         ));
                     }
                 }
-                else
-
-                // The app is probably unable to connect to the internet.
-                // In this situation we'll roll back to locally stored Q&A
-                {
-                    loadFallbackQuestions();
-                }
 
                 // Let's get the questions and answers ready to display
                 setupQuestions();
+
             }
 
         });
     }
 
-
-    /* If Parse.com fails to load question use these! */
-    private void loadFallbackQuestions(){
-
-         /* Question 1 */
-        questions.add(new QuestionObject(
-                "Paris is the capital of Spain??",
-                false,
-                "http://goo.gl/wKOqbX"
-        ));
-
-        /* Question 2 */
-        questions.add(new QuestionObject(
-                "Rome is the capital of Italy??",
-                true,
-                "http://www.telegraph.co.uk/travel/hotel/article129671.ece/ALTERNATES/w620/rometravelguide5.jpg"
-        ));
-
-        /* Question 3 */
-        questions.add(new QuestionObject(
-                "London is the capital of England??",
-                true,
-                "http://cdn.londonandpartners.com/assets/73295-640x360-london-skyline-ns.jpg"
-        ));
-
-        /* Question 4 */
-        questions.add(new QuestionObject(
-                "Dublin is the capital of Ireland??",
-                true,
-                "http://www.aeroport-perpignan.com/sites/default/files/dublin_1830978b.jpg"
-        ));
-
-        /* Question 5 */
-        questions.add(new QuestionObject(
-                "Addis Ababa is the capital of Sudan??",
-                false,
-                "http://buzzkenya.com/wp-content/uploads/2015/01/Addis-Ababa-1.jpg"
-        ));
-
-        /* Question 6 */
-        questions.add(new QuestionObject(
-                "Canberra is the capital of Australia??",
-                true,
-                "http://95077ae8547a1b239f3b-5d2534a656ffdee95a27431d367b21fa.r54.cf1.rackcdn.com/27/1/large.jpg"
-        ));
-
-        /* Question 7 */
-        questions.add(new QuestionObject(
-                "Stockholm is the capital of Denmark??",
-                false,
-                "http://cache-graphicslib.viator.com/graphicslib/thumbs674x446/3904/SITours/stockholm-grand-tour-by-coach-and-boat-in-stockholm-142840.jpg"
-        ));
-
-        /* Question 8 */
-        questions.add(new QuestionObject(
-                "Helsinki is the capital of Finland??",
-                true,
-                "https://s-media-cache-ak0.pinimg.com/originals/00/c9/0d/00c90d43127c8617f689e72f73f0e976.jpg"
-        ));
-
-        /* Question 9 */
-        questions.add(new QuestionObject(
-                "Madrid is the capital of Portugal??",
-                false,
-                "http://anastasia.llobe.com/wp-content/uploads/2014/10/madrid4.jpg"
-        ));
-
-        /* Question 10 */
-        questions.add(new QuestionObject(
-                "Zagreb is the capital of Croatia??",
-                true,
-                "http://www.letstravelradio.com/thisweek/2008/05-08/croatia_main.jpg"
-        ));
-
-        /* Question 11 */
-        questions.add(new QuestionObject(
-                "Tokyo is the capital of China??",
-                false,
-                "http://www.telegraph.co.uk/incoming/article115762.ece/ALTERNATES/w460/tokyo.jpg"
-        ));
-    }
-
-    /* Setup questions array */
-    private void setupQuestions(){
-
-        // Randomise order of questions
+    private void setupQuestions()
+    {
+        // This function loads of a maximum of 10 random questions
         Collections.shuffle(questions);
-
-        // Set number of questions
         numQuestions = questions.size();
 
-        // Ensure Maximum of 10 questions
-        if(numQuestions > MAX_QUESTIONS){
+        if (numQuestions > MAX_QUESTIONS)
+        {
             numQuestions = MAX_QUESTIONS;
         }
 
-        // Do next question
+        // Once the questions are generated we can fire off a question..
         nextQuestion();
     }
 
@@ -273,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
             lblQuestion.setText(questions.get(currentQuestion).getQuestion());
             lblQuestionNumber.setText("Question " + (currentQuestion + 1));
 
-            String imageURL = IMAGE_ROOT_URL + questions.get(currentQuestion).getImageURL();
+            String imageURL = questions.get(currentQuestion).getImageURL();
 
             Picasso.with(this)
                     .load(imageURL)
@@ -339,37 +249,27 @@ public class MainActivity extends AppCompatActivity {
                 List<HighScoreObject> highScores = Paper.book().read("highscores", new ArrayList<HighScoreObject>());
                 highScores.add(highScore);
 
-                Collections.sort(highScores, new Comparator<HighScoreObject>()
-                {
+                Collections.sort(highScores, new Comparator<HighScoreObject>() {
                     @Override
                     public int compare(HighScoreObject lhs, HighScoreObject rhs) {
-                        if (lhs.score > rhs.score)
-                        {
+                        if (lhs.score > rhs.score) {
                             return 1;
-                        }
-                        else if (lhs.score < rhs.score)
-                        {
+                        } else if (lhs.score < rhs.score) {
                             return -1;
-                        }
-                        else if (lhs.timestamp > rhs.timestamp)
-                        {
+                        } else if (lhs.timestamp > rhs.timestamp) {
                             return 1;
-                        }
-                        else if (lhs.timestamp < rhs.timestamp)
-                        {
+                        } else if (lhs.timestamp < rhs.timestamp) {
                             return -1;
-                        }
-                        else
-                        {
+                        } else {
                             return 0;
                         }
                     }
                 });
 
+                // Write the high scores to paper
                     Collections.reverse(highScores);
-                    Paper.book().write("highscores", highScores);
-                    Log.d("MHISSDEBUG", "Saving high scores!");
-                    finish();
+                Paper.book().write("highscores", highScores);
+                finish();
 
             }
         });

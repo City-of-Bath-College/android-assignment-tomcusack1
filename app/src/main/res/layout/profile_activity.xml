@@ -1,18 +1,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#dedede"
+    android:background="#333333"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.mhissdev.com.QuestionApp.ProfileActivity">
+    tools:context="com.tomcusack.com.QuestionApp.ProfileActivity">
 
-    <!-- <RelativeLayout
-        android:id="@+id/top-background"
-        android:background="@drawable/background"
-        android:layout_width="match_parent"
-        android:layout_height="120dp" /> -->
-
-    <!-- Top banner -->
     <ImageView
         android:id="@+id/top_banner"
         android:src="@drawable/background"
@@ -21,7 +14,6 @@
         android:layout_height="120dp"
         android:adjustViewBounds="true" />
 
-    <!-- Main content -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,14 +21,12 @@
         android:paddingRight="30dp"
         android:layout_marginTop="88dp">
 
-        <!-- Emojis -->
         <ImageView
             android:id="@+id/emojis"
-            android:src="@drawable/emojis"
+            android:src="@drawable/profile"
             android:layout_width="64dp"
             android:layout_height="64dp" />
-        
-        <!-- Title -->
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
@@ -44,17 +34,16 @@
             android:layout_marginTop="80dp"
             android:layout_marginBottom="24dp"
             android:gravity="right"
-            android:text="Mark Hiscock"
+            android:text="Tom Cusack"
             android:textSize="32sp"
             android:textStyle="normal"/>
 
-        <!-- Email -->
         <ImageView
             android:id="@+id/icon_email"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/title"
-            android:src="@drawable/img_05"/>
+            android:src="@drawable/email"/>
 
         <TextView
             android:id="@+id/text_email"
@@ -66,16 +55,15 @@
             android:layout_toRightOf="@+id/icon_email"
             android:layout_marginLeft="20dp"
             android:textSize="18sp"
-            android:text="mark@somecompany.com"/>
+            android:text="tom@tom-cusack.com"/>
 
-        <!-- site -->
         <ImageView
             android:id="@+id/icon_site"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/icon_email"
             android:layout_marginTop="20dp"
-            android:src="@drawable/img_03"/>
+            android:src="@drawable/website"/>
 
         <TextView
             android:id="@+id/text_site"
@@ -87,16 +75,15 @@
             android:layout_toRightOf="@+id/icon_site"
             android:layout_marginLeft="20dp"
             android:textSize="18sp"
-            android:text="http://somesite.com"/>
+            android:text="http://tom-cusack.com"/>
 
-        <!-- Some info -->
         <ImageView
             android:id="@+id/icon_info"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/icon_site"
             android:layout_marginTop="20dp"
-            android:src="@drawable/img_04"/>
+            android:src="@drawable/twitter"/>
 
         <TextView
             android:id="@+id/text_info"
@@ -108,16 +95,15 @@
             android:layout_toRightOf="@+id/icon_info"
             android:layout_marginLeft="20dp"
             android:textSize="18sp"
-            android:text="mhiscock"/>
+            android:text=" @leafy_lane"/>
 
-        <!-- Location -->
         <ImageView
             android:id="@+id/icon_location"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/icon_info"
             android:layout_marginTop="20dp"
-            android:src="@drawable/img_01"/>
+            android:src="@drawable/location"/>
 
         <TextView
             android:id="@+id/text_location"
@@ -129,7 +115,7 @@
             android:layout_toRightOf="@+id/icon_location"
             android:layout_marginLeft="20dp"
             android:textSize="18sp"
-            android:text="Devizes, Wiltshire, UK."/>
+            android:text="Bath, United Kingdom"/>
 
 
     </RelativeLayout>

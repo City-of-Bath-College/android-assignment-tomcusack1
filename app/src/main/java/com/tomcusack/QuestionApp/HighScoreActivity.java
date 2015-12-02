@@ -1,3 +1,5 @@
+// Copyright 2015 Tom Cusack
+
 package com.tomcusack.QuestionApp;
 
 import android.graphics.Color;
@@ -11,9 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.tomcusack.QuestionApp.R;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,79 +21,77 @@ import java.util.List;
 
 import io.paperdb.Paper;
 
-public class HighScoreActivity extends AppCompatActivity {
-
+public class HighScoreActivity extends AppCompatActivity
+{
     private ListView listView;
     private List<com.tomcusack.QuestionApp.HighScoreObject> highScores;
     private Button btnReset;
     private TextView lblNoScores;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
-        // Set no scores TextView
+        // If there aren't any score
         lblNoScores = (TextView)findViewById(R.id.lblNoScores);
         lblNoScores.setVisibility(View.INVISIBLE);
-
-        // Display Scores
+        // .. and if there are ..
         Paper.init(this);
         displayScores();
 
         // Reset button
         btnReset = (Button)findViewById(R.id.btnReset);
-
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Reset High scores
+                // Delete all the high scores in paper
                 Paper.book().delete("highscores");
-
-                /* Reinflate view */
                 setContentView(R.layout.activity_high_score);
             }
         });
     }
 
 
-    private class HighscoreAdapter extends ArrayAdapter<HighScoreObject> {
+    private class HighscoreAdapter extends ArrayAdapter<HighScoreObject>
+    {
 
-        public HighscoreAdapter(List<HighScoreObject> items) {
+        public HighscoreAdapter(List<HighScoreObject> items)
+        {
             super(HighScoreActivity.this, 0, items);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if (convertView == null) {
-                convertView = getLayoutInflater().inflate(
-                        R.layout.row_highscore, null);
+            if (convertView == null)
+            {
+                convertView = getLayoutInflater().inflate(R.layout.row_highscore, null);
             }
 
-            //get the highscore object for the row we're looking at
+            // Here we're going to get and return our high scores
             HighScoreObject highscore = highScores.get(position);
             Date date = new Date(highscore.getTimestamp());
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-            // Set Text
             TextView lblTitle = (TextView)convertView.findViewById(R.id.lblTitle);
             String strOutput = (position + 1) + ". " + highscore.getName()  + " " + dateFormat.format(date) + " : " + + highscore.getScore() + " points";
             lblTitle.setText(strOutput);
 
-            // Set Text colour for highest score
-            if(position == 0){
+            // And format the text colour
+            if(position == 0)
+            {
                 lblTitle.setTextColor(Color.parseColor("#cc2222"));
             }
 
             return convertView;
-        }// end get view
 
-    }// end adapter class
+        }
+    }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.menu_high_score, menu);
         return true;
     }
@@ -113,24 +111,26 @@ public class HighScoreActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    protected void displayScores(){
-
-        // Load High Scores
+    protected void displayScores()
+    {
+        // Let's get the high scores from paper, and display them if we have more than one
         highScores = Paper.book().read("highscores", new ArrayList<HighScoreObject>());
 
-        if(highScores.size() > 0){
-            // Display score list
+        if (highScores.size() > 0)
+        {
             HighscoreAdapter adapter = new HighscoreAdapter(highScores);
             listView = (ListView)findViewById(R.id.listView);
             listView.setAdapter(adapter);
 
-            // Hide No Scores
+            // Don't show people who get 0, because that's not good enough!
             lblNoScores.setVisibility(View.INVISIBLE);
         }
-        else{
-            // Display no scores
+        else
+        {
+            // And we also want to hide it if there isn't anything in the database
             lblNoScores.setVisibility(View.VISIBLE);
         }
 
     }
+
 }
