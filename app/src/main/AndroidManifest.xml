@@ -13,14 +13,16 @@
 
         <!-- START: Game Screen -->
         <activity
-            android:name="com.tomcusack.QuestionApp.MainActivity">
+            android:name="com.tomcusack.QuestionApp.MainActivity"
+            android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         <!-- END: Game Screen -->
 
         <!-- START: About Screen -->
         <activity
             android:name="com.tomcusack.QuestionApp.ProfileActivity"
-            android:label="@string/title_activity_profile" >
+            android:label="@string/title_activity_profile"
+            android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         <!-- END: About Screen -->
 
@@ -40,7 +42,8 @@
         <!--  START: High score Screen  -->
         <activity
             android:name="com.tomcusack.QuestionApp.HighScoreActivity"
-            android:label="High Score Table">
+            android:label="High Score Table"
+            android:theme="@android:style/Theme.NoTitleBar">
         </activity>
         <!--  END: High score Screen  -->
 

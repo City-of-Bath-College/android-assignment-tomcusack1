@@ -2,6 +2,7 @@
 
 package com.tomcusack.QuestionApp;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import java.util.List;
 
 import io.paperdb.Paper;
 
-public class HighScoreActivity extends AppCompatActivity
+public class HighScoreActivity extends Activity
 {
     private ListView listView;
     private List<com.tomcusack.QuestionApp.HighScoreObject> highScores;
@@ -53,6 +54,27 @@ public class HighScoreActivity extends AppCompatActivity
         });
     }
 
+    protected void displayScores()
+    {
+        // Let's get the high scores from paper, and display them if we have more than one
+        highScores = Paper.book().read("highscores", new ArrayList<HighScoreObject>());
+
+        if (highScores.size() > 0)
+        {
+            HighscoreAdapter adapter = new HighscoreAdapter(highScores);
+            listView = (ListView)findViewById(R.id.listView);
+            listView.setAdapter(adapter);
+
+            // Don't show people who get 0, because that's not good enough!
+            lblNoScores.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            // And we also want to hide it if there isn't anything in the database
+            lblNoScores.setVisibility(View.VISIBLE);
+        }
+
+    }
 
     private class HighscoreAdapter extends ArrayAdapter<HighScoreObject>
     {
@@ -75,13 +97,13 @@ public class HighScoreActivity extends AppCompatActivity
             Date date = new Date(highscore.getTimestamp());
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             TextView lblTitle = (TextView)convertView.findViewById(R.id.lblTitle);
-            String strOutput = (position + 1) + ". " + highscore.getName()  + " " + dateFormat.format(date) + " : " + + highscore.getScore() + " points";
+            String strOutput = (position + 1) + ". " + highscore.getName()  + ": " + + highscore.getScore() + " correct answers!";
             lblTitle.setText(strOutput);
 
             // And format the text colour
             if(position == 0)
             {
-                lblTitle.setTextColor(Color.parseColor("#cc2222"));
+                lblTitle.setTextColor(Color.parseColor("#76EE00"));
             }
 
             return convertView;
@@ -109,28 +131,6 @@ public class HighScoreActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    protected void displayScores()
-    {
-        // Let's get the high scores from paper, and display them if we have more than one
-        highScores = Paper.book().read("highscores", new ArrayList<HighScoreObject>());
-
-        if (highScores.size() > 0)
-        {
-            HighscoreAdapter adapter = new HighscoreAdapter(highScores);
-            listView = (ListView)findViewById(R.id.listView);
-            listView.setAdapter(adapter);
-
-            // Don't show people who get 0, because that's not good enough!
-            lblNoScores.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
-            // And we also want to hide it if there isn't anything in the database
-            lblNoScores.setVisibility(View.VISIBLE);
-        }
-
     }
 
 }

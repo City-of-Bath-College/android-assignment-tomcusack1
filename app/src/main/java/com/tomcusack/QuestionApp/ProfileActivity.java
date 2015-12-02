@@ -1,6 +1,8 @@
 // Copyright 2015 Tom Cusack
+
 package com.tomcusack.QuestionApp;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +10,7 @@ import android.view.MenuItem;
 
 import com.tomcusack.QuestionApp.R;
 
-public class ProfileActivity extends AppCompatActivity
+public class ProfileActivity extends Activity
 {
     @Override
     protected void onCreate(Bundle savedInstanceState)

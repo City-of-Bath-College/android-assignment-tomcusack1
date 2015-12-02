@@ -1,6 +1,7 @@
 // Copyright 2015 Tom Cusack
 package com.tomcusack.QuestionApp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
@@ -29,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 import io.paperdb.Paper;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private Button btnFalse;
     private Button btnTrue;
@@ -53,23 +54,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Assign variables to interface items */
         btnFalse = (Button)findViewById(R.id.btnFalse);
         btnTrue = (Button)findViewById(R.id.btnTrue);
         lblQuestion = (TextView)findViewById(R.id.lblQuestion);
         lblQuestionNumber = (TextView)findViewById(R.id.lblQuestionNumber);
         imgPicture = (ImageView)findViewById(R.id.imgPicture);
         lblScore = (TextView)findViewById(R.id.lblScore);
-
-        /* Init vars */
         score = 0;
         numQuestions = 0;
         currentQuestion = 0;
-
-        // Init question array list
         questions = new ArrayList<QuestionObject>();
 
-        /* Add listener for false button */
+        // False button listener
         btnFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /* Add listener for true button */
+        // True button listener
         btnTrue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        correctSound = MediaPlayer.create(MainActivity.this, R.raw.ping );
-        wrongSound = MediaPlayer.create(MainActivity.this, R.raw.boo);
+        correctSound = MediaPlayer.create(MainActivity.this, R.raw.correct );
+        wrongSound = MediaPlayer.create(MainActivity.this, R.raw.wrong);
         Paper.init(this);
         loadQuestions();
     }
@@ -124,19 +120,17 @@ public class MainActivity extends AppCompatActivity {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("ParseQuestionObject");
         query.findInBackground(new FindCallback<ParseObject>()
         {
-
             public void done(List<ParseObject> objects, ParseException e)
             {
                 if (e == null)
                 {
-
                     int len = objects.size();
 
                     // We need to loop through the parse dataset to ensure we have loaded
                     // all the questions to the question array
+
                     for (int i=0;i<len;i++)
                     {
-
                         ParseObject temp = objects.get(i);
 
                         questions.add(new QuestionObject(
@@ -193,10 +187,9 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else
-
-        // We've run out of questions, and so that means the game has finished.
-        // Let's calculate the score.
         {
+            // We've run out of questions, and so that means the game has finished.
+            // Let's calculate the score.
             endGame();
         }
 
@@ -206,10 +199,7 @@ public class MainActivity extends AppCompatActivity {
     {
         if (answer == questions.get(currentQuestion).getAnswer())
         {
-            Toast.makeText(MainActivity.this, "Correct!", Toast.LENGTH_SHORT).show();
-
-            // We want to positively reinforce getting a question right!
-            // Let's also update the score
+            // We want to positively reinforce getting a question right with a 'ding' (and give them a point!)
             correctSound.start();
             score++;
             lblScore.setText("Score:" + Integer.toString(score));
@@ -217,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
         else
         {
             // Oops! They got it wrong. They don't get any extra points. But they do get a bad sound.
-            Toast.makeText(MainActivity.this, "Wrong!!", Toast.LENGTH_SHORT).show();
             wrongSound.start();
         }
         currentQuestion++;
