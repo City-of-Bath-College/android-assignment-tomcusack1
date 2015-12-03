@@ -35,14 +35,14 @@ public class HighScoreActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_high_score);
 
-        // If there aren't any score
+        // Finds if there are/aren't scores to display - and then displays them
         lblNoScores = (TextView)findViewById(R.id.lblNoScores);
         lblNoScores.setVisibility(View.INVISIBLE);
-        // .. and if there are ..
         Paper.init(this);
+
         displayScores();
 
-        // Reset button
+        // Reset button listener - Onclick will delete all rows from paper
         btnReset = (Button)findViewById(R.id.btnReset);
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +81,7 @@ public class HighScoreActivity extends Activity
 
         public HighscoreAdapter(List<HighScoreObject> items)
         {
-            super(HighScoreActivity.this, 0, items);
+            super (HighScoreActivity.this, 0, items);
         }
 
         @Override
@@ -97,11 +97,13 @@ public class HighScoreActivity extends Activity
             Date date = new Date(highscore.getTimestamp());
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             TextView lblTitle = (TextView)convertView.findViewById(R.id.lblTitle);
+
+            // We need to cobble together the string to output the list of scores and then output it
             String strOutput = (position + 1) + ". " + highscore.getName()  + ": " + + highscore.getScore() + " correct answers!";
             lblTitle.setText(strOutput);
 
             // And format the text colour
-            if(position == 0)
+            if (position == 0)
             {
                 lblTitle.setTextColor(Color.parseColor("#76EE00"));
             }

@@ -45,7 +45,6 @@ public class MainActivity extends Activity {
     private Boolean answer;
     private String playerName;
     private static final int MAX_QUESTIONS = 10;
-    private static final String IMAGE_ROOT_URL = "http://kvsk.org/dev/quiz/images/";
     private MediaPlayer correctSound;
     private MediaPlayer wrongSound;
 
@@ -89,29 +88,30 @@ public class MainActivity extends Activity {
 
         correctSound = MediaPlayer.create(MainActivity.this, R.raw.correct );
         wrongSound = MediaPlayer.create(MainActivity.this, R.raw.wrong);
+
+        // I think now I'm using Parse I don't need to connect to paper anymore ...
         Paper.init(this);
+
+        // Get the questions
         loadQuestions();
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings)
+        {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
